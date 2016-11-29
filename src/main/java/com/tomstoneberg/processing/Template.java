@@ -4,7 +4,6 @@ import processing.core.PApplet;
 
 public class Template extends PApplet
 {
-
     @Override
     public void settings()
     {
