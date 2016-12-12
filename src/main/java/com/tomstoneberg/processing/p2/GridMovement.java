@@ -55,7 +55,7 @@ public class GridMovement extends Template
                 float shiftX = random(-mouseX, mouseX) / 20;
                 float shiftY = random(-mouseX, mouseX) / 20;
 
-                ellipse(posX + shiftX, posY + shiftY, mouseY / 15, mouseX / 15);
+                ellipse(posX + shiftX, posY + shiftY, mouseY / 15, mouseY / 15);
             }
         }
     }
