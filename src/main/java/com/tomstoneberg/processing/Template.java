@@ -48,7 +48,7 @@ public abstract class Template extends PApplet
 
         if (Character.toLowerCase(key) == 's') saveFrame(getFilename("png"));
         if (Character.toLowerCase(key) == 'p') savePdf = true;
-        if (key == DELETE || key == BACKSPACE) background(360);
+        if (key == DELETE || key == BACKSPACE) background(255);
     }
 
     private String getFilename(String extension)
