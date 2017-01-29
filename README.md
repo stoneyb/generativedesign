@@ -5,18 +5,22 @@
 ## Samples
 
 #### Agents
-![Intelligent Agent](https://github.com/stoneyb/generativedesign/blob/master/src/main/resources/output/IntelligentAgentv2-2016-12-30T10:40:15.906.png)
+![Intelligent Agent](src/main/resources/output/IntelligentAgentv2-2016-12-30T10:40:15.906.png)
 
-![Dumb Agent](https://github.com/stoneyb/generativedesign/blob/master/src/main/resources/output/DumbAgentv2-2016-12-17T17:57:47.872.png)
+![Dumb Agent](src/main/resources/output/DumbAgentv2-2016-12-17T17:57:47.872.png)
 
 #### Grid Movement
-![Grid Movement](https://github.com/stoneyb/generativedesign/blob/master/src/main/resources/output/GridMovementv4-2016-12-11T21:08:49.497.png)
+![Grid Movement](src/main/resources/output/GridMovementv4-2016-12-11T21:08:49.497.png)
 
 #### Form Morph
-![Form Morph](https://github.com/stoneyb/generativedesign/blob/master/src/main/resources/output/FormMorph-2017-01-28T09:34:06.485.png)
+![Form Morph](src/main/resources/output/FormMorph-2017-01-28T09:34:06.485.png)
 
-![Form Morph](https://github.com/stoneyb/generativedesign/blob/master/src/main/resources/output/FormMorph-2017-01-28T09:35:06.946.png)
+![Form Morph](src/main/resources/output/FormMorph-2017-01-28T09:35:06.946.png)
 
+![Form Morph](src/main/resources/output/FormMorphv2-2017-01-29T08:22:20.296.png)
 
-![Form Morph](https://github.com/stoneyb/generativedesign/blob/master/src/main/resources/output/FormMorphv2-2017-01-29T08:22:20.296.png)
+### Growth
+![Growth](src/main/resources/output/Growth-2017-01-29T09:27:39.223.png)
+![Growth](src/main/resources/output/Growthv2-2017-01-29T09:38:06.187.png)
+![Growth](src/main/resources/output/Growthv2-2017-01-29T09:38:06.795.png)
 
