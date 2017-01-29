@@ -58,6 +58,7 @@ public class FormMorphv2 extends Template
       {
          x[i] += random(-stepSize, stepSize);
          y[i] += random(-stepSize, stepSize);
+         // ellipse(x[i] + centerX, y[i] + centerY, 5, 5);
       }
 
       strokeWeight(0.75f);
