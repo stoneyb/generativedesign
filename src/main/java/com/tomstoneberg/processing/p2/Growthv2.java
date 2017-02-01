@@ -27,6 +27,7 @@ public class Growthv2 extends Template
    {
       smooth();
       //frameRate(10);
+      fill(50);
 
       // first circle
       x[0] = width / 2;
@@ -79,12 +80,20 @@ public class Growthv2 extends Template
          }
       }
 
+      noStroke();
+
       // draw them
       for(int i = 0; i < currentCount; i++)
       {
-         if(i==0) noFill();
-         else fill(50);
-         ellipse(x[i], y[i], r[i] * 2, r[i] * 2);
+         if(i==0)
+         {
+            continue;
+         }
+
+         if(dist(x[i], y[i], width / 2, height / 2) < 360)
+         {
+            ellipse(x[i], y[i], r[i] * 2, r[i] * 2);
+         }
       }
 
       if(currentCount >= maxCount) noLoop();
@@ -96,6 +105,9 @@ public class Growthv2 extends Template
    {
       super.keyReleased();
       if(key == '1') drawGhosts = !drawGhosts;
+      if(key == 'r') fill(random(255), random(255), random(255));
+      if(key == 'd') fill(50);
+
    }
 
    public static void main(String[] args)
