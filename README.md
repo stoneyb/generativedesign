@@ -27,3 +27,6 @@
 ### Circle Pack
 ![Circle Pack](src/main/resources/output/CirclePack-2017-01-31T21:17:07.163.png)
 ![Circle Pack v2](src/main/resources/output/CirclePackv2-2017-02-01T18:51:45.833.png)
+
+### Animated Brush
+![Animated Brush](src/main/resources/output/AnimatedBrush-2017-02-04T09:17:40.959.png)
