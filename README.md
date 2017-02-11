@@ -30,3 +30,6 @@
 
 ### Animated Brush
 ![Animated Brush](src/main/resources/output/AnimatedBrush-2017-02-04T09:17:40.959.png)
+
+### Text
+![Text](src/main/resources/output/Text-2017-02-11T08:13:47.624.png)
