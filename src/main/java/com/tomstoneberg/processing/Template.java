@@ -51,7 +51,7 @@ public abstract class Template extends PApplet
         if (key == DELETE || key == BACKSPACE) background(255);
     }
 
-    private String getFilename(String extension)
+    protected String getFilename(String extension)
     {
         File resourcesDirectory = new File("src/main/resources/output");
         String dir = resourcesDirectory.getAbsolutePath();
