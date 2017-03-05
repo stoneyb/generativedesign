@@ -1,17 +1,20 @@
 package com.tomstoneberg.processing.custom;
 
 import com.tomstoneberg.processing.Template;
+import com.tomstoneberg.processing.custom.lsystem.KochIsland;
+import com.tomstoneberg.processing.custom.lsystem.LSystem;
 import processing.core.PApplet;
 
 public class LSystemRender extends Template
 {
-
-   LSystem lSystem = new LSystem();
+   int generations = 0;
+   private LSystem lSystem = new KochIsland(generations);
 
    @Override
    public void settings()
    {
-      size(800, 800);
+      size(1600, 1600);
+      pixelDensity(displayDensity());
    }
 
    @Override
@@ -24,37 +27,33 @@ public class LSystemRender extends Template
    public void doDraw()
    {
       background(255);
-      float lineLength = 15f;
+      float lineLength = 10f;
       translate(width / 2, height / 2);
 
-      String start = lSystem.getAxiom();
+      System.out.println(lSystem.getProductionResult());
 
-      for(int i = 0; i < lSystem.getGenerations(); i++)
+      for(char c : lSystem.getProductionResult().toCharArray())
       {
-         start = start.replace("F", lSystem.getRule());
-      }
-
-      System.out.println(start);
-
-      for(char c : start.toCharArray())
-      {
+         stroke(0);
          switch(c)
          {
             case 'F':
-               line(0, 0, lineLength, 0);
-               translate(lineLength, 0);
+               line(0, 0, 0, lineLength);
+               translate(0, lineLength);
+               break;
+            case 'f':
+               translate(0, lineLength);
                break;
             case '-':
-               rotate(radians(-lSystem.getTheta()));
+               rotate(-PI / 2);
                break;
             case '+':
-               rotate(radians(lSystem.getTheta()));
+               rotate(PI / 2);
                break;
          }
       }
 
-
-
+      noLoop();
 
    }
 
@@ -62,6 +61,19 @@ public class LSystemRender extends Template
    public void keyReleased()
    {
       super.keyReleased();
+      if (keyCode == UP)
+      {
+         generations++;
+         lSystem = new KochIsland(generations);
+      }
+
+      if (keyCode == DOWN)
+      {
+         generations--;
+         lSystem = new KochIsland(generations);
+      }
+
+      loop();
    }
 
    public static void main(String[] args)
