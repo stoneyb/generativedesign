@@ -1,6 +1,7 @@
 package com.tomstoneberg.processing.custom;
 
 import com.tomstoneberg.processing.Template;
+import com.tomstoneberg.processing.custom.lsystem.AbopC;
 import com.tomstoneberg.processing.custom.lsystem.KochIsland;
 import com.tomstoneberg.processing.custom.lsystem.LSystem;
 import processing.core.PApplet;
@@ -8,7 +9,11 @@ import processing.core.PApplet;
 public class LSystemRender extends Template
 {
    int generations = 0;
-   private LSystem lSystem = new KochIsland(generations);
+   private LSystem lSystem = new AbopC(generations);
+
+   float centerX = width / 2;
+   float centerY = height / 2;
+   float offsetX, offsetY;
 
    @Override
    public void settings()
@@ -28,7 +33,15 @@ public class LSystemRender extends Template
    {
       background(255);
       float lineLength = 10f;
-      translate(width / 2, height / 2);
+
+      if(mousePressed)
+      {
+         centerX = mouseX - offsetX;
+         centerY = mouseY - offsetY;
+      }
+      translate(centerX, centerY );
+
+      pushMatrix();
 
       System.out.println(lSystem.getProductionResult());
 
@@ -53,7 +66,7 @@ public class LSystemRender extends Template
          }
       }
 
-      noLoop();
+      popMatrix();
 
    }
 
@@ -64,16 +77,21 @@ public class LSystemRender extends Template
       if (keyCode == UP)
       {
          generations++;
-         lSystem = new KochIsland(generations);
+         lSystem = new AbopC(generations);
       }
 
       if (keyCode == DOWN)
       {
          generations--;
-         lSystem = new KochIsland(generations);
+         lSystem = new AbopC(generations);
       }
+   }
 
-      loop();
+   @Override
+   public void mousePressed()
+   {
+      offsetX = mouseX - centerX;
+      offsetY = mouseY - centerY;
    }
 
    public static void main(String[] args)
