@@ -2,7 +2,6 @@ package com.tomstoneberg.processing.custom;
 
 import com.tomstoneberg.processing.Template;
 import com.tomstoneberg.processing.custom.lsystem.AbopC;
-import com.tomstoneberg.processing.custom.lsystem.KochIsland;
 import com.tomstoneberg.processing.custom.lsystem.LSystem;
 import processing.core.PApplet;
 
@@ -18,7 +17,7 @@ public class LSystemRender extends Template
    @Override
    public void settings()
    {
-      size(1600, 1600);
+      size(800, 800);
       pixelDensity(displayDensity());
    }
 
