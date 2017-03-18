@@ -33,6 +33,8 @@
 
 ### Text
 ![Text](src/main/resources/output/Text-2017-02-11T08:13:47.624.png)
+![Text Analysis](src/main/resources/output/TextAnalysisv2-2017-03-18T09:20:25.924.png)
+![Text Analysis](src/main/resources/output/TextAnalysisv2-2017-03-18T09:20:31.235.png)
 
 ### Complex Modules
 ![Complex Modules](src/main/resources/output/ComplexModules-2017-02-11T09:24:30.518.png)
