@@ -1,18 +1,23 @@
 package com.tomstoneberg.processing.custom;
 
 import com.tomstoneberg.processing.Template;
-import com.tomstoneberg.processing.custom.lsystem.AbopC;
+import com.tomstoneberg.processing.custom.lsystem.AbopA;
 import com.tomstoneberg.processing.custom.lsystem.LSystem;
 import processing.core.PApplet;
 
 public class LSystemRender extends Template
 {
    int generations = 0;
-   private LSystem lSystem = new AbopC(generations);
+   private LSystem lSystem = newSystem(generations);
 
    float centerX = width / 2;
    float centerY = height / 2;
    float offsetX, offsetY;
+
+   private static LSystem newSystem(int generations)
+   {
+      return new AbopA(generations);
+   }
 
    @Override
    public void settings()
@@ -31,7 +36,7 @@ public class LSystemRender extends Template
    public void doDraw()
    {
       background(255);
-      float lineLength = 10f;
+      float lineLength = 5f;
       strokeWeight(0.5f);
 
       if(mousePressed)
@@ -47,7 +52,7 @@ public class LSystemRender extends Template
 
       for(char c : lSystem.getProductionResult().toCharArray())
       {
-         stroke(0, 40);
+         stroke(0, 100);
          switch(c)
          {
             case 'F':
@@ -77,13 +82,13 @@ public class LSystemRender extends Template
       if (keyCode == UP)
       {
          generations++;
-         lSystem = new AbopC(generations);
+         lSystem = newSystem(generations);
       }
 
       if (keyCode == DOWN)
       {
          generations--;
-         lSystem = new AbopC(generations);
+         lSystem = newSystem(generations);
       }
    }
 
