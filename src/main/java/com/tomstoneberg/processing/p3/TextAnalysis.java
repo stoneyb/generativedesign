@@ -24,6 +24,7 @@ public class TextAnalysis extends Template
    public void settings()
    {
       size(670, 800);
+      pixelDensity(displayDensity());
    }
 
    @Override

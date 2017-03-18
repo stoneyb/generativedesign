@@ -32,6 +32,7 @@ public class LSystemRender extends Template
    {
       background(255);
       float lineLength = 10f;
+      strokeWeight(0.5f);
 
       if(mousePressed)
       {
@@ -42,11 +43,11 @@ public class LSystemRender extends Template
 
       pushMatrix();
 
-      System.out.println(lSystem.getProductionResult());
+      System.out.println(lSystem.getProductionResult().length());
 
       for(char c : lSystem.getProductionResult().toCharArray())
       {
-         stroke(0);
+         stroke(0, 40);
          switch(c)
          {
             case 'F':
