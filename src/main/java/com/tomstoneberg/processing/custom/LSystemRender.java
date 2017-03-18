@@ -1,8 +1,7 @@
 package com.tomstoneberg.processing.custom;
 
 import com.tomstoneberg.processing.Template;
-import com.tomstoneberg.processing.custom.lsystem.AbopA;
-import com.tomstoneberg.processing.custom.lsystem.LSystem;
+import com.tomstoneberg.processing.custom.lsystem.*;
 import processing.core.PApplet;
 
 public class LSystemRender extends Template
@@ -16,7 +15,7 @@ public class LSystemRender extends Template
 
    private static LSystem newSystem(int generations)
    {
-      return new AbopA(generations);
+      return new AbopF(generations);
    }
 
    @Override
