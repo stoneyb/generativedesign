@@ -10,5 +10,7 @@ public class DragonCurve extends LSystem
 
       this.generations = generations;
       this.theta = 90f;
+
+      this.closed = false;
    }
 }

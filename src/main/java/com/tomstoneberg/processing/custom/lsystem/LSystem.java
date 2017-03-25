@@ -9,6 +9,7 @@ public abstract class LSystem
    int generations;
    float theta;
    Map<String, String> productions = new HashMap<>();
+   boolean closed = true;
 
    public String getProductionResult()
    {
@@ -36,6 +37,16 @@ public abstract class LSystem
          if(i != generations - 1) result = "";
       }
       return result;
+   }
+
+   public float getTheta()
+   {
+      return theta;
+   }
+
+   public boolean isClosed()
+   {
+      return closed;
    }
 
 }

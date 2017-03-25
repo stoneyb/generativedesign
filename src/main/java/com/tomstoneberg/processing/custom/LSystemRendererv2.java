@@ -1,64 +1,31 @@
 package com.tomstoneberg.processing.custom;
 
 import com.tomstoneberg.processing.Template;
-import com.tomstoneberg.processing.custom.lsystem.DragonCurve;
+import com.tomstoneberg.processing.custom.lsystem.Fass1;
+import com.tomstoneberg.processing.custom.lsystem.Fass2;
 import com.tomstoneberg.processing.custom.lsystem.LSystem;
+import com.tomstoneberg.processing.custom.lsystem.SierpinskiGasket;
 import processing.core.PApplet;
 import processing.core.PVector;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.tomstoneberg.processing.custom.LSystemRendererv2.Direction.EAST;
-
 public class LSystemRendererv2 extends Template
 {
-   int generations = 0;
+   private int generations = 0;
    private LSystem lSystem = newSystem(generations);
+   private float LINE_LENGTH = 5.0f;
 
-   float centerX = width / 2;
-   float centerY = height / 2;
-   float offsetX, offsetY;
+   private float centerX = width / 2;
+   private float centerY = height / 2;
+   private float offsetX, offsetY;
 
-   enum Direction {
-      NORTH, EAST, SOUTH, WEST;
-
-      public static Direction getNextDirection(Direction direction)
-      {
-         switch (direction)
-         {
-            case NORTH:
-               return EAST;
-            case EAST:
-               return SOUTH;
-            case SOUTH:
-               return WEST;
-            case WEST:
-               return NORTH;
-         }
-         throw new RuntimeException();
-      }
-
-      public static Direction getPreviousDirection(Direction direction)
-      {
-         switch (direction)
-         {
-            case NORTH:
-               return WEST;
-            case EAST:
-               return NORTH;
-            case SOUTH:
-               return EAST;
-            case WEST:
-               return SOUTH;
-         }
-         throw new RuntimeException();
-      }
-   }
+   private float angle = 0;
 
    private static LSystem newSystem(int generations)
    {
-      return new DragonCurve(generations);
+      return new Fass2(generations);
    }
 
    @Override
@@ -77,6 +44,7 @@ public class LSystemRendererv2 extends Template
    @Override
    public void doDraw()
    {
+      angle = 0;
       background(255);
       strokeWeight(0.5f);
 
@@ -91,7 +59,6 @@ public class LSystemRendererv2 extends Template
 
       PVector initialPoint = new PVector(0, 0);
       PVector currentPoint = initialPoint;
-      Direction direction = EAST;
 
       Set<LinePoints> lines = new HashSet<>();
 
@@ -102,29 +69,33 @@ public class LSystemRendererv2 extends Template
          {
             case 'F':
             case 'G':
-               PVector point = getPoint(currentPoint, direction);
+            case 'A':
+            case 'B':
+               PVector point = getPoint(currentPoint);
                LinePoints line = new LinePoints(currentPoint.x, currentPoint.y, point.x, point.y);
-               if(lines.contains(line)) System.out.println("DUPE");
                lines.add(line);
                currentPoint = point;
                break;
             case 'f':
-               currentPoint = getPoint(currentPoint, direction);
+               currentPoint = getPoint(currentPoint);
                break;
             case '-':
-               direction = Direction.getPreviousDirection(direction);
+               angle = (angle - lSystem.getTheta()) % 360;
                break;
             case '+':
-               direction = Direction.getNextDirection(direction);
+               angle = (angle + lSystem.getTheta()) % 360;
                break;
          }
       }
 
       System.out.print(lines);
 
-      // Close the loop, add final line
-      LinePoints finalLine = new LinePoints(currentPoint.x, currentPoint.y, initialPoint.x, initialPoint.y);
-      //lines.add(finalLine);
+      if(lSystem.isClosed())
+      {
+         // Close the loop, add final line
+         LinePoints finalLine = new LinePoints(currentPoint.x, currentPoint.y, initialPoint.x, initialPoint.y);
+         lines.add(finalLine);
+      }
 
       for(LinePoints line: lines)
       {
@@ -132,26 +103,10 @@ public class LSystemRendererv2 extends Template
       }
    }
 
-   // TODO: Make this account for angles
-   private PVector getPoint(PVector point, Direction direction)
+   private PVector getPoint(PVector point)
    {
-      float x = point.x;
-      float y = point.y;
-      switch(direction)
-      {
-         case NORTH:
-            y -= 10;
-            break;
-         case EAST:
-            x += 10;
-            break;
-         case SOUTH:
-            y += 10;
-            break;
-         case WEST:
-            x -= 10;
-            break;
-      }
+      float x = point.x + (int)(sin(radians(angle)) * LINE_LENGTH);
+      float y = point.y + (int)(cos(radians(angle)) * LINE_LENGTH);
 
       return new PVector(x, y);
    }
