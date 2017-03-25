@@ -16,10 +16,15 @@ public class LinePoints
    public boolean equals(Object other)
    {
       return other instanceof LinePoints &&
-            this.x1 == ((LinePoints)other).x1 &&
-            this.x2 == ((LinePoints)other).x2 &&
-            this.y1 == ((LinePoints)other).y1 &&
-            this.y2 == ((LinePoints)other).y2;
+            ((this.x1 == ((LinePoints)other).x1 &&
+              this.x2 == ((LinePoints)other).x2 &&
+              this.y1 == ((LinePoints)other).y1 &&
+              this.y2 == ((LinePoints)other).y2)
+                  ||
+             (this.x1 == ((LinePoints)other).x2 &&
+              this.x2 == ((LinePoints)other).x1 &&
+              this.y1 == ((LinePoints)other).y2 &&
+              this.y2 == ((LinePoints)other).y1));
    }
 
    @Override
@@ -36,12 +41,7 @@ public class LinePoints
    @Override
    public String toString()
    {
-      return "LinePoints{" +
-            "x1=" + x1 +
-            ", x2=" + x2 +
-            ", y1=" + y1 +
-            ", y2=" + y2 +
-            '}';
+      return String.format("[%s, %s, %s, %s]", x1, y1, x2, y2);
    }
 
 }
