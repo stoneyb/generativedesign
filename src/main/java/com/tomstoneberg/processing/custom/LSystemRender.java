@@ -45,8 +45,6 @@ public class LSystemRender extends Template
       }
       translate(centerX, centerY );
 
-      pushMatrix();
-
       System.out.println(lSystem.getProductionResult().length());
 
       for(char c : lSystem.getProductionResult().toCharArray())
@@ -69,8 +67,6 @@ public class LSystemRender extends Template
                break;
          }
       }
-
-      popMatrix();
 
    }
 
