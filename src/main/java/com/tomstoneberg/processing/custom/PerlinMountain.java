@@ -15,7 +15,7 @@ public class PerlinMountain extends Template
    @Override
    public void settings()
    {
-      size(800, 800);
+      size(800, 400);
       smooth();
    }
 
@@ -29,18 +29,19 @@ public class PerlinMountain extends Template
    @Override
    public void doDraw()
    {
-      background(225, 30, 80);
+      int r = (int)random(360);
+      background(r, 30, 80);
 //      background(127, 114, 92);
-      drawMountain(400, 50, 60);
-      drawMountain(450, 80, 50);
-      drawMountain(500, 100, 40);
+      drawMountain(r,200, 50, 60);
+      drawMountain(r,250, 80, 50);
+      drawMountain(r,300, 100, 40);
 
       noLoop();
    }
 
-   private void drawMountain(int yStart, int range, int bright)
+   private void drawMountain(int r, int yStart, int range, int bright)
    {
-      fill(225, 30, bright);
+      fill(r, 30, bright);
       float x = 0;
       float y = yStart;
       beginShape();
