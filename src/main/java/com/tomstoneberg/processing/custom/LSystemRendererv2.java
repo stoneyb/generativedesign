@@ -45,7 +45,7 @@ public class LSystemRendererv2 extends Template
    public void doDraw()
    {
       angle = 0;
-      background(255);
+      background(0);
       strokeWeight(0.5f);
 
       if(mousePressed)
@@ -64,7 +64,7 @@ public class LSystemRendererv2 extends Template
 
       for(char c : lSystem.getProductionResult().toCharArray())
       {
-         stroke(0, 100);
+         stroke(255, 100);
          switch(c)
          {
             case 'F':
