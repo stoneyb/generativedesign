@@ -2,6 +2,7 @@
 #### Techniques and some portions of code from:
 * http://www.generative-gestaltung.de/
 * http://algorithmicbotany.org/papers/abop/abop.pdf
+* https://processing.org/
 
 #### See all output here: [output dir](src/main/resources/output)
 
