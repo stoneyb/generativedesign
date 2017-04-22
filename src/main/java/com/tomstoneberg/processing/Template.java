@@ -9,7 +9,7 @@ import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
 public abstract class Template extends PApplet
 {
-    private boolean savePdf;
+    private boolean saveSvg;
 
     @Override
     public void settings()
@@ -25,16 +25,16 @@ public abstract class Template extends PApplet
     @Override
     public void draw()
     {
-        if(savePdf)
+        if(saveSvg)
         {
-            beginRecord(PDF, getFilename("pdf"));
+            beginRecord(SVG, getFilename("svg"));
         }
 
         doDraw();
 
-        if(savePdf)
+        if(saveSvg)
         {
-            savePdf = false;
+            saveSvg = false;
             endRecord();
         }
 
@@ -46,8 +46,8 @@ public abstract class Template extends PApplet
     public void keyReleased()
     {
 
-        if (Character.toLowerCase(key) == 's') saveFrame(getFilename("png"));
-        if (Character.toLowerCase(key) == 'p') savePdf = true;
+        if (Character.toLowerCase(key) == 'p') saveFrame(getFilename("png"));
+        if (Character.toLowerCase(key) == 's') saveSvg = true;
         if (key == DELETE || key == BACKSPACE) background(255);
     }
 

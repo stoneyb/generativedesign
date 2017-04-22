@@ -1,21 +1,23 @@
 package com.tomstoneberg.processing.custom;
 
 import com.tomstoneberg.processing.Template;
-import com.tomstoneberg.processing.custom.lsystem.Fass1;
-import com.tomstoneberg.processing.custom.lsystem.Fass2;
-import com.tomstoneberg.processing.custom.lsystem.LSystem;
-import com.tomstoneberg.processing.custom.lsystem.SierpinskiGasket;
+import com.tomstoneberg.processing.custom.lsystem.*;
+import com.tomstoneberg.processing.p2.IntelligentAgent;
 import processing.core.PApplet;
 import processing.core.PVector;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 public class LSystemRendererv2 extends Template
 {
    private int generations = 0;
    private LSystem lSystem = newSystem(generations);
-   private float LINE_LENGTH = 5.0f;
+
+   private static float LINE_LENGTH = 10.0f;
+   private static float LINE_WEIGHT = 0.5f;
 
    private float centerX = width / 2;
    private float centerY = height / 2;
@@ -25,13 +27,13 @@ public class LSystemRendererv2 extends Template
 
    private static LSystem newSystem(int generations)
    {
-      return new Fass2(generations);
+      return new BranchC(generations);
    }
 
    @Override
    public void settings()
    {
-      size(800, 800);
+      size(600, 600);
       pixelDensity(displayDensity());
    }
 
@@ -44,9 +46,10 @@ public class LSystemRendererv2 extends Template
    @Override
    public void doDraw()
    {
-      angle = 0;
-      background(0);
-      strokeWeight(0.5f);
+      angle = 180;
+      background(255);
+      strokeWeight(LINE_WEIGHT);
+      strokeCap(SQUARE);
 
       if(mousePressed)
       {
@@ -62,9 +65,11 @@ public class LSystemRendererv2 extends Template
 
       Set<LinePoints> lines = new HashSet<>();
 
+      Stack<State> states = new Stack<>();
+
       for(char c : lSystem.getProductionResult().toCharArray())
       {
-         stroke(255, 100);
+         stroke(0, 100);
          switch(c)
          {
             case 'F':
@@ -84,6 +89,14 @@ public class LSystemRendererv2 extends Template
                break;
             case '+':
                angle = (angle + lSystem.getTheta()) % 360;
+               break;
+            case '[':
+               states.push(new State(currentPoint, angle));
+               break;
+            case ']':
+               State state = states.pop();
+               currentPoint = state.currentPoint;
+               angle = state.angle;
                break;
          }
       }
@@ -133,6 +146,18 @@ public class LSystemRendererv2 extends Template
    {
       offsetX = mouseX - centerX;
       offsetY = mouseY - centerY;
+   }
+
+   private static class State
+   {
+      PVector currentPoint;
+      float angle;
+
+      public State(PVector currentPoint, float angle)
+      {
+         this.currentPoint = currentPoint;
+         this.angle = angle;
+      }
    }
 
    public static void main(String[] args)
