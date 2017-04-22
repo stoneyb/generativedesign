@@ -8,6 +8,9 @@
 
 ## Samples
 
+#### Plants
+![Plants](src/main/resources/output/LSystemRendererv2-2017-04-17T20:07:51.535.svg)
+
 #### Agents
 ![Intelligent Agent](src/main/resources/output/IntelligentAgentv2-2016-12-30T10:40:15.906.png)
 
