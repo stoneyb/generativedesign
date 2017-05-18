@@ -16,7 +16,7 @@ public class LSystemRendererv2 extends Template
    private int generations = 0;
    private LSystem lSystem = newSystem(generations);
 
-   private static float LINE_LENGTH = 10.0f;
+   private static float LINE_LENGTH = 5.0f;
    private static float LINE_WEIGHT = 0.5f;
 
    private float centerX = width / 2;
@@ -27,7 +27,7 @@ public class LSystemRendererv2 extends Template
 
    private static LSystem newSystem(int generations)
    {
-      return new BranchC(generations);
+      return new SierpinskiGasket(generations);
    }
 
    @Override
